@@ -1,4 +1,4 @@
-=== Debug Bar ===
+=== Debug Bar Console ===
 Contributors: koopersmith
 Tags: debug
 Tested up to: 3.1
