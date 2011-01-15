@@ -36,7 +36,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 
 		$data = stripslashes( $_POST['data'] );
 
-		if ( preg_match( "/^SELECT|UPDATE|ALTER|DELETE|CREATE|INSERT'/i", $data ) ) {
+		if ( preg_match( "/^\s*(SELECT|UPDATE|ALTER|DELETE|CREATE|INSERT)\s/i", $data ) ) {
 			$data = explode( ";\n", $data );
 			foreach ( $data as $query ) {
 				$this->print_mysql_table( $wpdb->get_results( $query, ARRAY_A ), $query );
