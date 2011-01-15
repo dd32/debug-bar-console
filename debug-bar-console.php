@@ -22,7 +22,7 @@ function debug_bar_console_scripts() {
 	$url = plugin_dir_url( __FILE__ );
 
 	wp_enqueue_style( 'debug-bar-console', "{$url}css/debug-bar-console$suffix.css", array('debug-bar'), '20110114' );
-	wp_enqueue_script( 'debug-bar-console', "{$url}js/debug-bar-console$suffix.js", array('debug-bar', 'codemirror'), '20110114' );
+	wp_enqueue_script( 'debug-bar-console', "{$url}js/debug-bar-console$suffix.js", array('debug-bar'), '20110114' );
 }
 
 ?>
