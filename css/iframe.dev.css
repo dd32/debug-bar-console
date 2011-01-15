@@ -56,6 +56,11 @@ body {
 table {
 	font-size: 12px;
 }
+.mysql {
+	min-width: 100%;
+	margin-bottom: 5px;
+}
+
 th {
 	color: #333;
 	background: #f9f9f9;
@@ -63,5 +68,13 @@ th {
 th, td {
 	text-align: left;
 	padding: 3px 5px 0;
-	border: 1px solid #f4f4f4;
+	border: 1px solid #ccc;
+}
+.query {
+	padding: 5px;
+	color: #555;
+	background: #d9d9d9; /* fallback color */
+	background:-moz-linear-gradient(bottom,  #d7d7d7,  #e4e4e4);
+	background:-webkit-gradient(linear, left bottom, left top, from(#d7d7d7), to(#e4e4e4));
+	text-shadow: 0 1px 0 #f4f4f4;
 }
