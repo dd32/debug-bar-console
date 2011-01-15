@@ -68,7 +68,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 		foreach ( $data as $row ) {
 			echo '<tr>';
 			foreach ( $row as $key => $value ) {
-				echo "<td class='$key'>$value</td>";
+				echo "<td class='$key'>" . esc_html($value) . "</td>";
 			}
 			echo '</tr>';
 		}
