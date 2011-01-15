@@ -15,8 +15,10 @@ jQuery( function($) {
 		return false;
 	});
 
-	input.keyup( function( event ) {
-		if ( event.which == 13 && event.shiftKey )
+	input.keydown( function( event ) {
+		if ( event.which == 13 && event.shiftKey ) {
 			submit.click();
+			event.preventDefault();
+		}
 	});
 });
