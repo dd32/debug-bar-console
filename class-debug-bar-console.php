@@ -35,12 +35,38 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 			die();
 
 		$data = stripslashes( $_POST['data'] );
-		if ( preg_match( '/^SELECT/i', $data ) )
-			print_r( $wpdb->get_results( $data ) );
-		else
-			eval( $data );
 
+		if ( preg_match( "/^SELECT|UPDATE|ALTER|DELETE|CREATE|INSERT'/i", $data ) ) {
+			$this->print_mysql_table( $wpdb->get_results( $data, ARRAY_A ) );
+			die();
+		}
+
+		eval( $data );
 		die();
+	}
+
+	function print_mysql_table( $data ) {
+		if ( empty( $data ) )
+			return;
+
+		$keys = array_keys( $data[0] );
+		echo '<table class="mysql" cellpadding="0"><thead><tr>';
+
+		foreach ( $keys as $key ) {
+			echo "<th class='$key'>$key</th>";
+		}
+
+		echo '</tr></thead><tbody>';
+
+		foreach ( $data as $row ) {
+			echo '<tr>';
+			foreach ( $row as $key => $value ) {
+				echo "<td class='$key'>$value</td>";
+			}
+			echo '</tr>';
+		}
+
+		echo '</tbody></table>';
 	}
 }
 
