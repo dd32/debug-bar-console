@@ -4,17 +4,23 @@
 	position: absolute;
 	top: 10px;
 	bottom: 10px;
-	padding: 5px;
 }
 
 #debug-bar-console-output {
 	right: 10px;
 	left: 50%;
 	margin-left: 10px;
-	overflow: auto;
+	overflow: hidden;
+}
+
+#debug-bar-console-output iframe {
+	width: 100%;
+	height: 100%;
+	float: left;
 }
 
 #debug-bar-console-wrap {
+	padding: 5px;
 	left: 10px;
 	right: 50%;
 	margin-right: 10px;

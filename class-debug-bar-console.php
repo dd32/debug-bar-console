@@ -10,14 +10,19 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 		$this->set_visible( true );
 	}
 
-	function render() {
-		wp_nonce_field( 'debug_bar_console', '_wpnonce_debug_bar_console' );
-		?>
+	function render() { ?>
+		<form id="debug-bar-console">
+		<input id="debug-bar-console-iframe-css" type="hidden"
+			value="<?php echo plugins_url( 'css/iframe.dev.css', __FILE__ ); ?>" />
+		<?php wp_nonce_field( 'debug_bar_console', '_wpnonce_debug_bar_console' ); ?>
 		<div id="debug-bar-console-wrap" class="debug-bar-console">
 			<textarea id="debug-bar-console-input" class="debug-bar-console"></textarea>
 		</div>
-		<div id="debug-bar-console-output" class="debug-bar-console"></div>
+		<div id="debug-bar-console-output" class="debug-bar-console">
+			<iframe></iframe>
+		</div>
 		<a href="#" id="debug-bar-console-submit"><?php _e('Run'); ?></a>
+		</form>
 		<?php
 	}
 
