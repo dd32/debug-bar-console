@@ -4,7 +4,7 @@
  Plugin URI: http://wordpress.org/extend/plugins/debug-bar-console/
  Description: Adds a PHP/MySQL console to the debug bar. Requires the debug bar plugin.
  Author: koopersmith
- Version: 0.1
+ Version: 0.2
  Author URI: http://darylkoop.com/
  */
 
