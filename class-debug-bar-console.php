@@ -36,6 +36,10 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 					</li>
 				<?php endforeach; ?>
 			</ul>
+			<div id="debug-bar-console-submit">
+				<span><?php _e('Shift + Enter'); ?></span>
+				<a href="#"><?php _e('Run'); ?></a>
+			</div>
 			<div class="debug-bar-console-panel debug-bar-console-on-php">
 				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"><?php echo '<?php '; ?></textarea>
 			</div>
@@ -49,7 +53,6 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 				<iframe></iframe>
 			</div>
 		</div>
-		<a href="#" id="debug-bar-console-submit"><?php _e('Run'); ?></a>
 		</form>
 		<?php
 	}

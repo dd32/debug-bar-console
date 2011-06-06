@@ -113,11 +113,16 @@
 
 #querylist #debug-bar-console-submit {
 	position: absolute;
-	top: 10px;
-	right: 50%;
-	margin-right: 10px;
+	top: 4px;
+	right: 0;
 	font-size: 12px;
 	line-height: 16px;
+}
+#querylist #debug-bar-console-submit span {
+	color: #bbb;
+}
+#querylist #debug-bar-console-submit a {
+	margin-left: 5px;
 	font-weight: bold;
 	padding: 3px 8px;
 	color: #21759B !important;
@@ -129,7 +134,7 @@
 	-webkit-border-radius: 3px;
 	border-radius: 3px;
 }
-#querylist #debug-bar-console-submit:hover {
+#querylist #debug-bar-console-submit a:hover {
 	color: #d54e21 !important;
 	background: #e4e4e4; /* fallback color */
 	background:-moz-linear-gradient(bottom,  #e4e4e4,  #d7d7d7);

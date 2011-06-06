@@ -84,7 +84,7 @@ $(document).ready( function(){
 	// Generate elements
 	$.extend( el, {
 		form:   $('#debug-bar-console'),
-		submit: $('#debug-bar-console-submit'),
+		submit: $('#debug-bar-console-submit a'),
 		output: $('#debug-bar-console-output')
 	});
 	el.wrap = el.form.parent();
