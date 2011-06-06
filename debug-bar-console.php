@@ -19,8 +19,8 @@ add_action('debug_bar_enqueue_scripts', 'debug_bar_console_scripts');
 function debug_bar_console_scripts() {
 	$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 
-	wp_enqueue_style( 'debug-bar-console', plugins_url( "css/debug-bar-console$suffix.css", __FILE__ ), array('debug-bar'), '20110114' );
-	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array('debug-bar'), '20110114' );
+	wp_enqueue_style( 'debug-bar-console', plugins_url( "css/debug-bar-console$suffix.css", __FILE__ ), array('debug-bar'), '20110606' );
+	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array('debug-bar'), '20110606' );
 }
 
 ?>
