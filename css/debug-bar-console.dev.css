@@ -1,10 +1,10 @@
 .debug-bar-console-on-php,
-.debug-bar-console-on-mysql {
+.debug-bar-console-on-sql {
 	display: none;
 }
 
 .debug-bar-console-mode-php .debug-bar-console-on-php,
-.debug-bar-console-mode-mysql .debug-bar-console-on-mysql {
+.debug-bar-console-mode-sql .debug-bar-console-on-sql {
 	display: block;
 }
 

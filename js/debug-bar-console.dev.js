@@ -49,15 +49,15 @@ mode =  {
 	editors: {},
 	codemirror: {
 		modes: {
-			php:   'application/x-httpd-php',
-			mysql: 'text/x-plsql'
+			php: 'application/x-httpd-php',
+			sql: 'text/x-plsql'
 		},
 		defaults: {
 			lineNumbers: true,
 			matchBrackets: true,
 			indentUnit: 4,
 			indentWithTabs: true,
-			enterMode: "keep",
+			enterMode: 'keep',
 			onKeyEvent: function(i, e) {
 				// Hook into shift-enter
 				if ( e.keyCode == 13 && e.shiftKey ) {
@@ -128,23 +128,5 @@ $(document).ready( function(){
 		mode.change( $(this).data( 'console-tab' ) );
 	});
 });
-
-window.initCodeMirror = function( type ) {
-	// Codemirror!
-	var codemirrorVars = {
-		lineNumbers: true,
-		matchBrackets: true,
-		indentUnit: 4,
-		indentWithTabs: true,
-		enterMode: "keep"
-	};
-
-	if ( type == 'php' ) {
-		window.phpEditor = CodeMirror.fromTextArea( document.getElementById('debug-bar-console-input-php'), $.extend( {}, codemirrorVars, { mode: 'application/x-httpd-php' } ) );
-	} else if ( type == 'mysql' ) {
-		window.mysqlEditor = CodeMirror.fromTextArea(document.getElementById('debug-bar-console-input-mysql'),  $.extend( {}, codemirrorVars, { mode: 'text/x-plsql' } ) );
-	}
-}
-
 
 })(jQuery);

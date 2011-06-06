@@ -12,8 +12,8 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 
 	function render() {
 		$modes = array(
-			'php'   => __('PHP'),
-			'mysql' => __('MySQL'),
+			'php' => __('PHP'),
+			'sql' => __('SQL'),
 		);
 
 		$mode = 'php';
@@ -39,8 +39,8 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 			<div class="debug-bar-console-panel debug-bar-console-on-php">
 				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"><?php echo '<?php '; ?></textarea>
 			</div>
-			<div class="debug-bar-console-panel debug-bar-console-on-mysql">
-				<textarea id="debug-bar-console-input-mysql" class="debug-bar-console-input"></textarea>
+			<div class="debug-bar-console-panel debug-bar-console-on-sql">
+				<textarea id="debug-bar-console-input-sql" class="debug-bar-console-input"></textarea>
 			</div>
 		</div>
 		<div id="debug-bar-console-output">
@@ -80,7 +80,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 			eval( $data );
 			die();
 
-		} elseif ( 'mysql' == $mode ) {
+		} elseif ( 'sql' == $mode ) {
 			$data = explode( ";\n", $data );
 			foreach ( $data as $query ) {
 				$this->print_mysql_table( $wpdb->get_results( $query, ARRAY_A ), $query );
