@@ -8,7 +8,7 @@
  Author URI: http://darylkoop.com/
  */
 
-add_action('debug_bar_panels', 'debug_bar_console_panel');
+add_filter('debug_bar_panels', 'debug_bar_console_panel');
 function debug_bar_console_panel( $panels ) {
 	require_once 'class-debug-bar-console.php';
 	$panels[] = new Debug_Bar_Console();
