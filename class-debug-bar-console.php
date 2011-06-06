@@ -37,7 +37,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 				<?php endforeach; ?>
 			</ul>
 			<div class="debug-bar-console-panel debug-bar-console-on-php">
-				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"></textarea>
+				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"><?php echo '<?php '; ?></textarea>
 			</div>
 			<div class="debug-bar-console-panel debug-bar-console-on-mysql">
 				<textarea id="debug-bar-console-input-mysql" class="debug-bar-console-input"></textarea>
@@ -62,7 +62,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 		if ( ! is_super_admin() || ! isset( $_POST['mode'] ) )
 			die();
 
-		$data = stripslashes( $_POST['data'] );
+		$data = '?>' . stripslashes( $_POST['data'] );
 		$mode = $_POST['mode'];
 
 		if ( 'php' == $mode ) {
@@ -74,7 +74,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 			$close = strrpos( $data, '?>' );
 
 			// If we're still in PHP, ensure we end with a semicolon.
-			if ( $open === false || $open > $close )
+			if ( $open > $close )
 				$data = rtrim( $data, ';' ) . ';';
 
 			eval( $data );

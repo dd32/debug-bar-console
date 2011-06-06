@@ -10,6 +10,10 @@ run = function() {
 	if ( ! input )
 		return;
 
+	// Trigger CodeMirror save if editor exists.
+	if ( mode.editors[ mode.mode ] )
+		mode.editors[ mode.mode ].save();
+
 	$.post( ajaxurl, {
 		action: 'debug_bar_console',
 		mode:   mode.mode,
@@ -39,6 +43,40 @@ mode =  {
 
 		if ( mode.tabs[ mode.mode ] )
 			mode.tabs[ mode.mode ].addClass( 'debug-bar-console-tab-active' );
+
+		mode.maybeInitEditor();
+	},
+	editors: {},
+	codemirror: {
+		modes: {
+			php:   'application/x-httpd-php',
+			mysql: 'text/x-plsql'
+		},
+		defaults: {
+			lineNumbers: true,
+			matchBrackets: true,
+			indentUnit: 4,
+			indentWithTabs: true,
+			enterMode: "keep",
+			onKeyEvent: function(i, e) {
+				// Hook into shift-enter
+				if ( e.keyCode == 13 && e.shiftKey ) {
+					e.stop();
+					run();
+					return true;
+				}
+			}
+		}
+	},
+	maybeInitEditor: function() {
+		var args;
+
+		if ( mode.editors[ mode.mode ] || ! mode.codemirror.modes[ mode.mode ] || ! mode.inputs[ mode.mode ] ) {
+			return;
+		}
+
+		args = $.extend( {}, mode.codemirror.defaults, { mode: mode.codemirror.modes[ mode.mode ] });
+		mode.editors[ mode.mode ] = CodeMirror.fromTextArea( mode.inputs[ mode.mode ][0], args );
 	}
 };
 
@@ -49,6 +87,7 @@ $(document).ready( function(){
 		submit: $('#debug-bar-console-submit'),
 		output: $('#debug-bar-console-output')
 	});
+	el.wrap = el.form.parent();
 
 	nonce = $('#_wpnonce_debug_bar_console').val();
 
@@ -66,12 +105,9 @@ $(document).ready( function(){
 	// Bind run click handler
 	el.submit.click( run );
 
-	// Bind shift+enter keyboard shortcut
-	$('.debug-bar-console-input').keydown( function( event ) {
-		if ( event.which == 13 && event.shiftKey ) {
-			run();
-			event.preventDefault();
-		}
+	// Bind default loading
+	el.wrap.bind( 'debug-bar-show', function() {
+		mode.maybeInitEditor();
 	});
 
 	// Bind tab switching
@@ -92,6 +128,23 @@ $(document).ready( function(){
 		mode.change( $(this).data( 'console-tab' ) );
 	});
 });
+
+window.initCodeMirror = function( type ) {
+	// Codemirror!
+	var codemirrorVars = {
+		lineNumbers: true,
+		matchBrackets: true,
+		indentUnit: 4,
+		indentWithTabs: true,
+		enterMode: "keep"
+	};
+
+	if ( type == 'php' ) {
+		window.phpEditor = CodeMirror.fromTextArea( document.getElementById('debug-bar-console-input-php'), $.extend( {}, codemirrorVars, { mode: 'application/x-httpd-php' } ) );
+	} else if ( type == 'mysql' ) {
+		window.mysqlEditor = CodeMirror.fromTextArea(document.getElementById('debug-bar-console-input-mysql'),  $.extend( {}, codemirrorVars, { mode: 'text/x-plsql' } ) );
+	}
+}
 
 
 })(jQuery);

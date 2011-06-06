@@ -39,7 +39,6 @@
 	bottom: 0;
 	left: 0;
 	right: 0;
-	padding: 5px;
 	border: 1px solid #ccc;
 	box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
 	-moz-box-shadow: inset 1px 1px 1px rgba(0,0,0,0.1);
@@ -135,4 +134,11 @@
 	background: #e4e4e4; /* fallback color */
 	background:-moz-linear-gradient(bottom,  #e4e4e4,  #d7d7d7);
 	background:-webkit-gradient(linear, left bottom, left top, from(#e4e4e4), to(#d7d7d7));
+}
+#debug-bar-console pre {
+	padding: 0;
+}
+
+.CodeMirror {
+	height: 100%;
 }
