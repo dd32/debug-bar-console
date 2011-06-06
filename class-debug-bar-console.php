@@ -60,17 +60,18 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 	function ajax() {
 		global $wpdb;
 
-		check_admin_referer( 'debug_bar_console', 'nonce' );
+		if ( false === check_ajax_referer( 'debug_bar_console', 'nonce', false ) )
+			die();
 
 		if ( ! is_super_admin() || ! isset( $_POST['mode'] ) )
 			die();
 
-		$data = '?>' . stripslashes( $_POST['data'] );
+		$data = stripslashes( $_POST['data'] );
 		$mode = $_POST['mode'];
 
 		if ( 'php' == $mode ) {
 			// Trim the data
-			$data = trim( $data );
+			$data = '?>' . trim( $data );
 
 			// Do we end the string in PHP?
 			$open  = strrpos( $data, '<?php' );
@@ -86,6 +87,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 		} elseif ( 'sql' == $mode ) {
 			$data = explode( ";\n", $data );
 			foreach ( $data as $query ) {
+				$query = str_replace( '$wpdb->', $wpdb->prefix, $query );
 				$this->print_mysql_table( $wpdb->get_results( $query, ARRAY_A ), $query );
 			}
 			die();
