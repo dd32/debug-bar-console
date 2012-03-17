@@ -54,6 +54,7 @@ mode =  {
 		},
 		defaults: {
 			lineNumbers: true,
+			lineWrapping: true,
 			matchBrackets: true,
 			indentUnit: 4,
 			indentWithTabs: true,
