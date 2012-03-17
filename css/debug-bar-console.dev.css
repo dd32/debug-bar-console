@@ -64,6 +64,7 @@
 
 .debug-bar-console-tabs {
 	margin: 0;
+	padding: 0;
 }
 
 .debug-bar-console-tab {
@@ -144,6 +145,7 @@
 	padding: 0;
 }
 
-.CodeMirror {
+#debug-bar-console .CodeMirror,
+#debug-bar-console .CodeMirror-scroll {
 	height: 100%;
 }

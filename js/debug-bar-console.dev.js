@@ -50,7 +50,7 @@ mode =  {
 	codemirror: {
 		modes: {
 			php: 'application/x-httpd-php',
-			sql: 'text/x-plsql'
+			sql: 'text/x-mysql'
 		},
 		defaults: {
 			lineNumbers: true,

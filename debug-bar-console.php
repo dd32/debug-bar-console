@@ -19,27 +19,12 @@ add_action('debug_bar_enqueue_scripts', 'debug_bar_console_scripts');
 function debug_bar_console_scripts() {
 	$suffix = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.dev' : '';
 
-	$php_recs = array( 'codemirror', 'codemirror-css', 'codemirror-javascript', 'codemirror-xml', 'codemirror-clike' );
-	$css_recs = array_merge( array( 'debug-bar', 'codemirror-plsql' ), $php_recs );
-	$js_recs  = array( 'debug-bar', 'codemirror-plsql', 'codemirror-php' );
-
-	wp_enqueue_style( 'debug-bar-console', plugins_url( "css/debug-bar-console$suffix.css", __FILE__ ), $css_recs, '20110606b' );
-	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), $js_recs, '20110606b' );
-
-
 	// Codemirror
-	wp_enqueue_style( 'codemirror', plugins_url( "codemirror/lib/codemirror.css", __FILE__ ), array(), '2.01' );
-	wp_enqueue_script( 'codemirror', plugins_url( "codemirror/lib/codemirror.js", __FILE__ ), array(), '2.01' );
+	wp_enqueue_style( 'debug-bar-codemirror', plugins_url( "codemirror/lib/codemirror.css", __FILE__ ), array(), '2.22' );
+	wp_enqueue_script( 'debug-bar-codemirror', plugins_url( "codemirror/debug-bar-codemirror.js", __FILE__ ), array(), '2.22' );
 
-	$modes = array( 'clike', 'css', 'javascript', 'plsql', 'xml' );
-
-	foreach ( $modes as $mode ) {
-		wp_enqueue_style( "codemirror-$mode", plugins_url( "codemirror/mode/$mode/$mode.css", __FILE__ ), array(), '2.01' );
-		wp_enqueue_script( "codemirror-$mode", plugins_url( "codemirror/mode/$mode/$mode.js", __FILE__ ), array('codemirror'), '2.01' );
-	}
-
-	wp_enqueue_script( "codemirror-php", plugins_url( "codemirror/mode/php/php.js", __FILE__ ), $php_recs, '2.01' );
-
+	wp_enqueue_style( 'debug-bar-console', plugins_url( "css/debug-bar-console$suffix.css", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120317' );
+	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120317' );
 }
 
 ?>
