@@ -24,6 +24,6 @@ function debug_bar_console_scripts() {
 	wp_enqueue_script( 'debug-bar-codemirror', plugins_url( "codemirror/debug-bar-codemirror.js", __FILE__ ), array(), '2.22' );
 
 	wp_enqueue_style( 'debug-bar-console', plugins_url( "css/debug-bar-console$suffix.css", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120317' );
-	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120317' );
+	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120318' );
 }
 

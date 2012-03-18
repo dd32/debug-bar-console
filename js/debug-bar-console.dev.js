@@ -59,13 +59,8 @@ mode =  {
 			indentUnit: 4,
 			indentWithTabs: true,
 			enterMode: 'keep',
-			onKeyEvent: function(i, e) {
-				// Hook into shift-enter
-				if ( e.keyCode == 13 && e.shiftKey ) {
-					e.stop();
-					run();
-					return true;
-				}
+			extraKeys: {
+				'Shift-Enter': run
 			}
 		}
 	},
