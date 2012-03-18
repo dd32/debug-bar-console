@@ -1,8 +1,8 @@
 === Debug Bar Console ===
 Contributors: koopersmith
-Tags: debug
-Tested up to: 3.1
-Stable tag: 0.2
+Tags: debug, developer, console
+Tested up to: 3.4
+Stable tag: 0.3
 Requires at least: 3.1
 
 Adds a PHP/MySQL console to the debug bar. Requires the debug bar plugin.
@@ -13,6 +13,11 @@ Adds a PHP/MySQL console to the debug bar. Requires the [Debug Bar plugin](http:
 
 == Upgrade Notice ==
 
+= 0.3 =
+Added syntax highlighting using the CodeMirror text editor.
+Explicit PHP/SQL modes.
+UI changes to reflect updated debug bar UI.
+
 = 0.2 =
 Improvements to MySQL detection and display.
 Bug fixes.
@@ -21,6 +26,11 @@ Bug fixes.
 Initial Release
 
 == Changelog ==
+
+= 0.3 =
+Added syntax highlighting using the CodeMirror text editor.
+Explicit PHP/SQL modes.
+UI changes to reflect updated debug bar UI.
 
 = 0.2 =
 Improvements to MySQL detection and display.
