@@ -70,14 +70,24 @@ mode =  {
 		}
 	},
 	maybeInitEditor: function() {
-		var args;
+		var args, editor;
 
-		if ( mode.editors[ mode.mode ] || ! mode.codemirror.modes[ mode.mode ] || ! mode.inputs[ mode.mode ] ) {
+		// Check if the current mode is defined and has an input.
+		if ( ! mode.codemirror.modes[ mode.mode ] || ! mode.inputs[ mode.mode ] )
 			return;
+
+		// Initialize the mode if necessary.
+		if ( ! mode.editors[ mode.mode ] ) {
+			args = $.extend( {}, mode.codemirror.defaults, { mode: mode.codemirror.modes[ mode.mode ] });
+			mode.editors[ mode.mode ] = CodeMirror.fromTextArea( mode.inputs[ mode.mode ][0], args );
+
+			// Trigger show on the form to ensure CodeMirror is running properly.
+			el.form.show();
 		}
 
-		args = $.extend( {}, mode.codemirror.defaults, { mode: mode.codemirror.modes[ mode.mode ] });
-		mode.editors[ mode.mode ] = CodeMirror.fromTextArea( mode.inputs[ mode.mode ][0], args );
+		editor = mode.editors[ mode.mode ];
+		editor.focus();
+		editor.setCursor( editor.lineCount() );
 	}
 };
 

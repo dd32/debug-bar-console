@@ -41,7 +41,7 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 				<a href="#"><?php _e('Run'); ?></a>
 			</div>
 			<div class="debug-bar-console-panel debug-bar-console-on-php">
-				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"><?php echo '<?php '; ?></textarea>
+				<textarea id="debug-bar-console-input-php" class="debug-bar-console-input"><?php echo "<?php\n"; ?></textarea>
 			</div>
 			<div class="debug-bar-console-panel debug-bar-console-on-sql">
 				<textarea id="debug-bar-console-input-sql" class="debug-bar-console-input"></textarea>
@@ -123,4 +123,3 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 	}
 }
 
-?>

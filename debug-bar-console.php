@@ -27,4 +27,3 @@ function debug_bar_console_scripts() {
 	wp_enqueue_script( 'debug-bar-console', plugins_url( "js/debug-bar-console$suffix.js", __FILE__ ), array( 'debug-bar', 'debug-bar-codemirror' ), '20120317' );
 }
 
-?>
