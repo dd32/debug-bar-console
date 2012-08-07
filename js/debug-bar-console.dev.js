@@ -25,7 +25,7 @@ run = function() {
 
 output = {
 	data: '',
-	mode: 'text',
+	mode: 'formatted',
 	render: function( data ) {
 		var html;
 
@@ -34,7 +34,7 @@ output = {
 		else
 			data = output.data;
 
-		if ( output.mode === 'text' ) {
+		if ( output.mode === 'formatted' ) {
 			iframe.body.text( data );
 			html = iframe.body.html();
 			html = html.replace( / /g, '&nbsp;' ).replace(/[\r\n]+/g, '<br />');
