@@ -2,7 +2,7 @@
 
 var el = {},
 	iframe = {},
-	run, mode, nonce;
+	run, mode, output, nonce;
 
 run = function() {
 	var input = mode.inputs[ mode.mode ];
@@ -19,12 +19,34 @@ run = function() {
 		mode:   mode.mode,
 		data:   input.val(),
 		nonce:  nonce
-	}, function( data ) {
-		iframe.body.html( data );
-	});
+	}, output.render );
 	return false;
 };
 
+output = {
+	data: '',
+	mode: 'text',
+	render: function( data ) {
+		var html;
+
+		if ( arguments.length )
+			output.data = data;
+		else
+			data = output.data;
+
+		if ( output.mode === 'text' ) {
+			iframe.body.text( data );
+			html = iframe.body.html();
+			html = html.replace( / /g, '&nbsp;' ).replace(/[\r\n]+/g, '<br />');
+			iframe.body.html( html );
+		} else {
+			iframe.body.html( data );
+		}
+	},
+	refresh: function() {
+		return output.render();
+	}
+};
 
 mode =  {
 	mode: 'php',
@@ -91,6 +113,7 @@ $(document).ready( function(){
 	$.extend( el, {
 		form:   $('#debug-bar-console'),
 		submit: $('#debug-bar-console-submit a'),
+		input:  $('#debug-bar-console-wrap'),
 		output: $('#debug-bar-console-output')
 	});
 	el.wrap = el.form.parent();
@@ -117,7 +140,7 @@ $(document).ready( function(){
 	});
 
 	// Bind tab switching
-	$('.debug-bar-console-tab').each( function() {
+	$( '.debug-bar-console-tab', el.input ).each( function() {
 		var t = $(this),
 			slug = t.find('input').val(),
 			input;
@@ -132,6 +155,19 @@ $(document).ready( function(){
 
 	}).click( function() {
 		mode.change( $(this).data( 'console-tab' ) );
+	});
+
+	// Output tab switching
+	$( '.debug-bar-console-tab', el.output ).click( function() {
+		var t = $(this);
+
+		output.mode = t.data('outputMode');
+		output.refresh();
+
+		// Update tabs
+		t.siblings().removeClass('debug-bar-console-tab-active');
+		t.addClass('debug-bar-console-tab-active');
+
 	});
 });
 

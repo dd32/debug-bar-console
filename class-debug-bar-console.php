@@ -48,7 +48,10 @@ class Debug_Bar_Console extends Debug_Bar_Panel {
 			</div>
 		</div>
 		<div id="debug-bar-console-output">
-			<strong><?php _e('Output'); ?></strong>
+			<ul class="debug-bar-console-tabs">
+				<li class="debug-bar-console-tab debug-bar-console-tab-active" data-output-mode="text"><?php _e('Text Output'); ?></li>
+				<li class="debug-bar-console-tab" data-output-mode="html"><?php _e('HTML Output'); ?></li>
+			</ul>
 			<div class="debug-bar-console-panel">
 				<iframe></iframe>
 			</div>
